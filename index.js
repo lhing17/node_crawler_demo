@@ -3,6 +3,7 @@ let pinyin = require("pinyin");
 let express = require('express');
 const superagent = require('superagent');
 const cheerio = require('cheerio');
+let analectsDao = require('./core/analectsDao');
 
 let app = express();
 let analects = {};
@@ -66,8 +67,8 @@ superagent.get('lunyu.5000yan.com', (err, res) => {
             analects[chapter.cn] = articles;
         }
         Promise.all(promises).then(
-
+            // 查询结果存库
+            // () => analectsDao.save(analects)
         )
-
     }
 });
